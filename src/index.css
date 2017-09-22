@@ -1,12 +1,18 @@
+html {
+    box-sizing: border-box;
+}
+
 body,
 html {
-    width: 100vw;
-    height: 100vh;
+    width: 100%;
+    height: 100%;
+    max-width: 100vw;
+    min-height: 100vh;
     margin: 0;
 }
 
-html {
-    box-sizing: border-box;
+body {
+    background: url('./img/starring.png') repeat;
 }
 
 *,
@@ -30,7 +36,6 @@ li {
     max-width: 960px;
     width: 100%;
     height: 100%;
-    background-color: grey;
     margin: 0 auto;
     display: flex;
 }
@@ -108,12 +113,22 @@ li {
 }
 
 label {
-    display: block;
-    padding: 5px 20px;
-    padding-left: 30px;
+    display: flex;
+    padding: 5px 0px;
+    padding-left: 10px;
     border-radius: 20px;
     background-color: #fff;
     overflow: hidden;
+}
+
+label::before {
+    content: '';
+    display: block;
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+    background: url('./img/search.png') no-repeat center;
+    background-size: contain;
 }
 
 input {
@@ -127,11 +142,12 @@ input:focus {
 
 input::-webkit-input-placeholder {
     color: #c4c4c4;
-} 
+}
 
 input::-moz-placeholder {
     color: #c4c4c4;
 }
+
 
 /* .search-icon {
     background: url('./img/close.svg') no-repeat;
@@ -164,10 +180,12 @@ input::-moz-placeholder {
     width: 100%;
     padding: 10px;
     border-bottom: 1px solid #F0F0F0;
+    cursor: move;
 }
 
 .body__list-friends {
     overflow-y: scroll;
+    overflow-x: hidden;
     height: 295px;
 }
 
@@ -214,3 +232,19 @@ input::-moz-placeholder {
     border-radius: 10px;
     color: #fff;
 }
+
+/* Prevent the text contents of draggable elements from being selectable. */
+[draggable] {
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
+    /* Required to make elements draggable in old WebKit */
+    -khtml-user-drag: element;
+    -webkit-user-drag: element;
+  }
+
+  .friends-item.over {
+    outline: 1px dashed #000;
+  }
+

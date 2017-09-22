@@ -1,6 +1,7 @@
 import './index.css';
 const template = require('./template.hbs');
 const filter = require('./fillter');
+const dnd = require('./dnd');
 
 // функция для получения параметров api VK
 function api (method, params) {
@@ -49,6 +50,7 @@ promise
         result.innerHTML = html;
 
         filter(data);
+        dnd(data);
     })
     .catch(function(e) {
         // отлов ошибок
