@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>{{htmlWebpackPlugin.options.title}}</title>
+  <script src="http://vk.com/js/api/openapi.js"></script>
+</head>
+
+<body>
+  <div class="container">
+    <div class="vk-filter">
+      <div class="vk-filter__header">
+        <div class="header__top">
+          <span class="header-title">Выберите друзей</span>
+          <div class="vk-filter__btn-close"></div>
+        </div>
+        <div class="header__filter">
+          <div class="block__left">
+            <label for="input-1">
+                <input type="text" id="input-1" name="friend-left" placeholder="Начните вводить имя друга">
+            </label>
+          </div>
+          <div class="block__right">
+            <label for="input-2">
+                <input type="text" id="input-2" name="friend-right" placeholder="Название">
+            </label>
+          </div>
+        </div>
+      </div>
+      <div class="vk-filter__body">
+        <div class="block__left">
+          <span class="block-title">Ваши друзья</span>
+          <div class="body__my-friends">
+            <ul id="result" class="body__list-friends">
+              {{!-- список слева --}}
+
+            </ul>
+          </div>
+        </div>
+        <div class="block__right">
+          <span class="block-title">Друзья в списке</span>
+          <ul class="body__list-friends">
+            {{!-- список справа --}}
+          </ul>
+        </div>
+      </div>
+      <div class="vk-filter__footer">
+        <div class="btn-save">Сохранить</div>
+      </div>
+    </div>
+  </div>
+{{!-- <script src="sdk.js" type="text/javascript"></script> --}}
+</body>
+</html>

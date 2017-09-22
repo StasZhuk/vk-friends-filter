@@ -7,11 +7,12 @@ module.exports = function() {
         },
         {
             test: /\.hbs/,
-            loader: 'handlebars-loader'
+            loader: 'handlebars-loader',
+            // exclude: 'node_modules/handlebars/lib/handlebars.js'
         },
         {
             test: /\.(jpe?g|png|gif|svg|)$/i,
-            loader: 'file-loader?name=images/[hash].[ext]'
+            loader: 'file-loader?name=images/[name].[ext]'
         },
         {
             test: /\.(eot|svg|ttf|woff|woff2)$/,
