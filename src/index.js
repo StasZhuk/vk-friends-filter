@@ -1,6 +1,8 @@
 import './index.css';
 const template = require('./template.hbs');
+const filter = require('./fillter');
 
+// функция для получения параметров api VK
 function api (method, params) {
     return new Promise((resolve, reject) => {
         VK.api(method, params, data => {
@@ -13,6 +15,7 @@ function api (method, params) {
     });
 }
 
+// получение авторизации 
 const promise = new Promise ((resolve, reject) => {
     VK.init({
         apiId: 6192990
@@ -29,20 +32,25 @@ const promise = new Promise ((resolve, reject) => {
 
 promise
     .then(() => {
+        // склоняет имя поьзователя
         return api('users.get', { v: 5.68, name_case: 'gen' });
     })
     .then(data => {
         const [user] = data;
 
-        return api('friends.get', { v: 5.68, fields: 'first_name, last_name, photo_100' })
+        // получаем данные пользователя(имя фамилия фото друзей)
+        return api('friends.get', { v: 5.68, fields: 'first_name, last_name, photo_100, id' })
     })
     .then(data => {
-        console.log(data.items);
+        // выводим данные на страницу через Handlebars шаблон
         let html = template({ users: data.items }) ;
         let result = document.querySelector('#result');
         
         result.innerHTML = html;
+
+        filter(data);
     })
     .catch(function(e) {
+        // отлов ошибок
         alert('Ошибка' + e.message);
     })

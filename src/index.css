@@ -182,7 +182,7 @@ input::-moz-placeholder {
     font-weight: bold;
 }
 
-.body__my-friends .vk-filter__btn-close {
+.body__all-friends .vk-filter__btn-close {
     transform: rotate(45deg);
 }
 
