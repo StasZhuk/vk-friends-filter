@@ -1,33 +1,17 @@
 module.exports = data => {
     let inputAllFriends = document.querySelector('#friends-all');
+    let inputFilterFriends = document.querySelector('#friends-filter');
     let listFriends = document.querySelector('.list-all');
-    let listFilterFriends = document.querySelector('.list-filter');
-    let liItemsArr = listFriends.querySelectorAll('li');    
+    let listFilterFriends = document.querySelector('.list-filter');    
 
-    // обработчик ввода в поле фильра всех друзей(левое) 
+    // обработчик ввода в поле фильтра всех друзей(левое) 
     inputAllFriends.addEventListener('keyup', () => {
-        let inputVal = inputAllFriends.value;
-        let liItemsArrLength = liItemsArr.length;
-        
-        // если поле фиьтра пустое показываем всех
-        if (inputVal === '') {
-            for (let i = 0; i < liItemsArrLength; i++) {
-                liItemsArr[i].style.display = 'flex';
-            }
-        } else {
-            for (let i = 0; i < liItemsArrLength; i++) {
-                liItemsArr[i].style.display = 'none';
-            }
-            // проверяем на совпадения и отображаем нужное
-            data.items.forEach(function(user) {
-                if (isMatching(user.first_name + ' ' + user.last_name, inputVal)) {
-                    // находим элемент по ID друга
-                    let userLi = document.getElementById(user.id);
+        FilterList(listFriends, inputAllFriends);
+    });
 
-                    userLi.style.display = 'flex';
-                }
-            });   
-        }
+    // обработчик ввода в поле отфильтрованых друзей(правое) 
+    inputFilterFriends.addEventListener('keyup', () => {
+        FilterList(listFilterFriends, inputFilterFriends);
     });
 
     // обработчик события клика по кнопке добавления друга
@@ -42,7 +26,7 @@ module.exports = data => {
             listFilterFriends.appendChild(itemLi);
         }
     });
-
+    
     // обработчик события клика по кнопке удалить друга
     listFilterFriends.addEventListener('click', e => {
         let target = e.target;
@@ -55,6 +39,33 @@ module.exports = data => {
             listFriends.appendChild(itemLi);
         }
     });
+
+    function FilterList(list, inputField) {
+        let listItems = list.querySelectorAll('.friends-item');
+        let listItemsLength = listItems.length;
+        let inputFieldVal = inputField.value;
+
+        if (listItemsLength == 0) {
+            return false;
+        }
+
+        // если поле фиьтра пустое показываем всех
+        if (inputFieldVal === '') {
+            for (let i = 0; i < listItemsLength; i++) {
+                listItems[i].style.display = 'flex';
+            }
+        } else {
+            for (let i = 0; i < listItemsLength; i++) {
+                listItems[i].style.display = 'none';
+                let itemTitle = listItems[i].querySelector('.friends-item__title');
+
+                // проверяем на совпадения и отображаем нужное
+                if (isMatching(itemTitle.innerHTML, inputFieldVal)) {
+                    listItems[i].style.display = 'flex';
+                }
+            }
+        }
+    }
 
     // функция сравнения строк
     function isMatching(full, chunk) {
