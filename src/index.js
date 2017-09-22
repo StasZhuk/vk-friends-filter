@@ -49,8 +49,8 @@ promise
         
         result.innerHTML = html;
 
-        filter(data);
-        dnd(data);
+        filter();
+        dnd();
     })
     .catch(function(e) {
         // отлов ошибок

@@ -1,4 +1,4 @@
-module.exports = data => {
+module.exports = () => {
     let inputAllFriends = document.querySelector('#friends-all');
     let inputFilterFriends = document.querySelector('#friends-filter');
     let listFriends = document.querySelector('.list-all');
@@ -14,7 +14,7 @@ module.exports = data => {
         FilterList(listFilterFriends, inputFilterFriends);
     });
 
-    // обработчик события клика по кнопке добавления друга
+    // обработчик события клика по кнопке 'добавить друга'
     listFriends.addEventListener('click', e => {
         let target = e.target;
 
@@ -27,7 +27,7 @@ module.exports = data => {
         }
     });
     
-    // обработчик события клика по кнопке удалить друга
+    // обработчик события клика по кнопке 'удалить друга'
     listFilterFriends.addEventListener('click', e => {
         let target = e.target;
 
@@ -45,6 +45,7 @@ module.exports = data => {
         let listItemsLength = listItems.length;
         let inputFieldVal = inputField.value;
 
+        // если в списке пусто ничего не делаем
         if (listItemsLength == 0) {
             return false;
         }
@@ -55,6 +56,7 @@ module.exports = data => {
                 listItems[i].style.display = 'flex';
             }
         } else {
+            // если в поле чтото введено
             for (let i = 0; i < listItemsLength; i++) {
                 listItems[i].style.display = 'none';
                 let itemTitle = listItems[i].querySelector('.friends-item__title');

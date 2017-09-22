@@ -85,6 +85,12 @@ li {
     top: 50%;
 }
 
+.vk-filter__btn-close:hover::after,
+.vk-filter__btn-close:hover::before {
+    background-color: #5F9EA0;
+    transition: 0.3s background-color;    
+}
+
 .vk-filter__btn-close::after {
     transform: translate(-50%, -50%) rotate(45deg);
 }
@@ -131,6 +137,10 @@ label::before {
     background-size: contain;
 }
 
+label:hover::before {
+    background-image: url('./img/search-h.png');
+}
+
 input {
     width: 100%;
     border: none;
@@ -147,11 +157,6 @@ input::-webkit-input-placeholder {
 input::-moz-placeholder {
     color: #c4c4c4;
 }
-
-
-/* .search-icon {
-    background: url('./img/close.svg') no-repeat;
-} */
 
 .vk-filter__body {
     display: flex;
@@ -181,10 +186,15 @@ input::-moz-placeholder {
     padding: 10px;
     border-bottom: 1px solid #F0F0F0;
     cursor: move;
+    transition: 0.3s background-color;
+}
+
+.friends-item:hover {
+    background-color: #F0F0F0;
 }
 
 .body__list-friends {
-    overflow-y: scroll;
+    overflow-y: auto;
     overflow-x: hidden;
     height: 295px;
 }
@@ -211,6 +221,12 @@ input::-moz-placeholder {
 .friends-item .vk-filter__btn-close::after,
 .friends-item .vk-filter__btn-close::before {
     background-color: #c4c4c4;
+    transition: 0.3s background-color;
+}
+
+.friends-item .vk-filter__btn-close:hover::after,
+.friends-item .vk-filter__btn-close:hover::before {
+    background-color: cadetblue;
 }
 
 .friends-item.active {
@@ -231,6 +247,12 @@ input::-moz-placeholder {
     padding: 10px 15px;
     border-radius: 10px;
     color: #fff;
+    cursor: pointer;
+    transition: 0.3s color;
+}
+
+.btn-save:hover {
+    color: #5F9EA0;
 }
 
 /* Prevent the text contents of draggable elements from being selectable. */

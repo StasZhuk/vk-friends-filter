@@ -1,4 +1,4 @@
-module.exports = data => {
+module.exports = () => {
     let dragSrcEl = null;
 
     function handleDragStart(e) {
