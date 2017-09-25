@@ -1,7 +1,8 @@
 import './index.css';
+import { saveToStorage } from './js/localStorage.js';
 const template = require('./template.hbs');
-const filter = require('./fillter');
-const dnd = require('./dnd');
+const filter = require('./js/fillter');
+const dnd = require('./js/dnd');
 
 // функция для получения параметров api VK
 function api (method, params) {
@@ -44,13 +45,23 @@ promise
     })
     .then(data => {
         // выводим данные на страницу через Handlebars шаблон
-        let html = template({ users: data.items }) ;
-        let result = document.querySelector('#result');
+        let leftListHtml = document.querySelector('#leftList');
+        let rightListHtml = document.querySelector('#rightList');
+        let html = template({ users: data.items });
         
-        result.innerHTML = html;
+        if (localStorage.dataLeft && localStorage.dataRight) {
+            leftListHtml.innerHTML = template({ users: JSON.parse(localStorage.dataLeft) });
+            rightListHtml.innerHTML = template({ users: JSON.parse(localStorage.dataRight) });
+        } else {
+            leftListHtml.innerHTML = html;
+        }
 
-        filter();
+        document.querySelector('.btn-save').addEventListener('click', function() {
+            saveToStorage();
+        });
+
         dnd();
+        filter();
     })
     .catch(function(e) {
         // отлов ошибок

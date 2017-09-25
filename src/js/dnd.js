@@ -1,4 +1,11 @@
+import { FilterList, isMatching } from './functions.js';
+
 module.exports = () => {
+    let listFriends = document.querySelector('.list-all');
+    let listFilterFriends = document.querySelector('.list-filter'); 
+    let inputAllFriends = document.querySelector('#friends-all');
+    let inputFilterFriends = document.querySelector('#friends-filter');
+
     let dragSrcEl = null;
 
     function handleDragStart(e) {
@@ -21,18 +28,6 @@ module.exports = () => {
       
         return false;
     }
-      
-    // function handleDragEnter(e) {
-    //     if (e.target.tagName == 'LI') {
-    //         e.target.classList.add('over');
-    //     }
-    // }
-      
-    // function handleDragLeave(e) {
-    //     if (e.target.tagName == 'LI') {
-    //         e.target.classList.remove('over');  // this / e.target is previous target element.
-    //     }
-    // }
 
     function handleDrop(e) {
         if (e.stopPropagation) {
@@ -51,6 +46,9 @@ module.exports = () => {
                 e.target.parentElement.innerHTML += e.dataTransfer.getData('text/html');
             }
         }
+
+        FilterList(listFilterFriends, inputFilterFriends);
+        FilterList(listFriends, inputAllFriends);
       
         return false;
     }
@@ -64,5 +62,4 @@ module.exports = () => {
         // item.addEventListener('dragleave', handleDragLeave, false);
         item.addEventListener('drop', handleDrop, false);
     });
-
 }
