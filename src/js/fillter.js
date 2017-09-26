@@ -27,6 +27,7 @@ module.exports = () => {
             // добавляем друга в правый список
             listFilterFriends.appendChild(itemLi);
         }
+        FilterList(listFilterFriends, inputFilterFriends);
     });
     
     // обработчик события клика по кнопке 'удалить друга'
@@ -40,5 +41,6 @@ module.exports = () => {
             // возвращаем друга в левый список
             listFriends.appendChild(itemLi);
         }
+        FilterList(listFriends, inputAllFriends);
     });
 }
